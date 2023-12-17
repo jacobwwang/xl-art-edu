@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>星蕾艺术教育音乐统考算分器</title>
+        <style type="text/css">
+        body {
+            margin:0px; 
+            background-color: #f6f6f6;
+            font-family: 'microsoft yahei';
+            font-size: 16px;
+            background: #f6f6f6; 
+            width:100%; 
+        }
+        p{
+            width:100%;
+            margin:6px auto;
+        }
+        a{
+            color: #aaa;
+            text-decoration:none;
+        }
+        a:hover{
+            color: #aaa;
+            text-decoration:underline;
+        }
+        .box {
+            width:85%;
+            max-width:600px;
+            border:1px solid #eaeaea;
+            margin:0 auto;
+            background: #fff;
+            padding:5px 10px;
+            overflow: hidden;
+            margin-top:10px;
+        }
+        input[type=text] {
+            width: 69%;
+            padding: 0.3em;
+            font-size: 16px;
+            background-color: #fff;
+            border: 1px solid #aaa;
+        }
+        .btn{
+            background-color: #1bb0db;
+            border-radius: 3px;
+            color: #fff;
+            line-height: 28px;
+            width: 150px;
+            border: 1px solid #1bb0db;
+            cursor: pointer;
+            -webkit-appearance:none;
+        }
+
+        form span{
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+
+        form p{
+            display: flex;
+            align-items: center;
+        }
+        </style>
+        <!-- <script src="https://hm.baidu.com/hm.js?0538f9972c403d3b64610b7788402696"></script> -->
+        <script type="text/javascript" src="./jquery.js"></script>
+        <!-- <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?0538f9972c403d3b64610b7788402696";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+        </script> -->
+        </head>
+        <body>
+            <div style="width:100%; font-size: 20px; line-height:30px; text-align: center; ">
+                <p>2024 联考成绩计分器</p>
+                <!-- <p>（音乐表演成绩计算）</p> -->
+                <span style="font-size: 16px; font-weight: 600;">星蕾艺术教育</span>
+            </div>
+
+            <div class="box">
+                <form name="form1" method="post">
+                <p style="font-weight:bold;">音乐教育统考成绩计算<br></p>
+                <p><span>乐理与听写：</span><input type="text" name="a1" id="a11" placeholder="0-100" maxlength="4" onblur="checkNum(this)"> </p>
+                <p><span>视唱：</span><input type="text" name="a3" id="a13" placeholder="0-100" maxlength="4" onblur="checkNum(this)"> </p>
+                <p><span>主项：</span><input type="text" name="a2" id="a12" placeholder="0-100" maxlength="4" onblur="checkNum(this)"> </p>
+                <p><span>副项：</span><input type="text" name="a4" id="a14" placeholder="0-100" maxlength="4" onblur="checkNum(this)"> </p>
+
+                <p><span>统考分：</span><input type="text" name="a5" id="a15" style="background: #fdf8cd;" readonly=""> <br> </p>
+                <p style="margin-top:15px;">　　　<input type="button" name="s1" class="btn" id="s11" value="计算">　
+                        <input type="reset" name="r1" class="btn" value="清空" style="width:60px; background-color: #ccc; border: 1px solid #ccc;">
+                </p>
+                </form>
+            </div>
+            <div style="width: 85%; max-width:600px; margin:0 auto; font-size: 14px; font-weight: 600;">
+                <p>音乐教育统考成绩计算:总成绩满分为300分</p>
+                <p>计算公式为:总成绩=</p>
+                 (乐理与听写x15%+视唱x5%+主项x55%+副项x25%)x3，四舍五入取整数计分
+            </div>
+            <div class="box">
+                <form name="form1" method="post">
+                <p style="font-weight:bold;">音乐表演成绩计算<br></p>
+                <p><span>乐理与听写：</span><input type="text" name="a1" id="a1" placeholder="0-100" maxlength="4" onblur="checkNum(this)"> </p>
+                <p><span>视唱：</span><input type="text" name="a3" id="a3" placeholder="0-100" maxlength="4" onblur="checkNum(this)"> </p>
+                <p><span>声乐/器乐：</span><input type="text" name="a2" id="a2" placeholder="0-100" maxlength="4" onblur="checkNum(this)"> </p>
+                <!-- <p>机考：<input type="text" name="a4" id="a4" placeholder="0-100" maxlength="4" onblur="checkNum(this)"> </p> -->
+                <p><span>总分：</span><input type="text" name="a5" id="a5" style="background: #fdf8cd;" readonly=""> <br> </p>
+                <p style="margin-top:15px;">　　　<input type="button" name="s1" class="btn" id="s1" value="计算">　
+                        <input type="reset" name="r1" class="btn" value="清空" style="width:60px; background-color: #ccc; border: 1px solid #ccc;">
+                </p>
+                </form>
+            </div>
+
+            
+
+            <div style="width: 85%; max-width:600px; margin:0 auto; font-size: 14px; font-weight: 600;">
+                <p>音乐表演成绩计算:总成绩满分为300分</p>
+                <p>计算公式为:总成绩=</p>
+                (乐理与听写得分x15%+视唱得分x5%+表演方向得分x80%)x3，四舍五入取整数计分
+            </div>
+        
+            <div class="box">
+                <form name="form2" method="post">
+                <p style="font-weight:bold;">文化成绩成绩计算<br></p>
+                <p><span>文化分：</span><input type="text" name="b1" id="b1" maxlength="3" placeholder="0-750" onkeyup="this.value=this.value.replace(/[^?0-9]/g, '')"> </p>
+                <p><span>统考分：</span><input type="text" name="b2" id="b2" maxlength="3" placeholder="0-300" onkeyup="this.value=this.value.replace(/[^?0-9]/g, '')"> </p>
+                <p><span>总分：</span><input type="text" name="b3" id="b3" style="background: #fdf8cd;" readonly=""> <br> </p>
+                <p style="margin-top:15px;">　　　<input type="button" name="s2" id="s2" class="btn" value="计算">　
+                        <input type="reset" name="r2" class="btn" value="清空" style="width:60px; background-color: #ccc; border: 1px solid #ccc;">
+                </p>
+                </form>
+            </div>
+            <div style="width: 85%; max-width:600px; margin:0 auto; font-size: 14px; font-weight: 600;">
+                <p>文化成绩成绩计算:</p>
+                <p>计算公式为:</p>
+                文化总成绩X0.5+省统考成绩X2.5X0.5
+            </div>
+            <div style="width:100%;  line-height:25px; text-align: center; font-size: 18px; font-weight: 600; margin-top: 30px;">
+                <p>更多音乐艺考咨询</p>
+                <p>可扫码关注星蕾音乐公众号</p>
+                <img style="width: 150px;" src="./xl-official.jpg"/>
+            </div>
+        
+        <script type="text/javascript">
+
+           $("#s11").click(function () {
+                var a11 = $("#a11").val();
+                var a12 = $("#a12").val();
+                var a13 = $("#a13").val();
+                var a14 = $("#a14").val();
+        
+                if(chk(a11, '乐理与听写') && chk(a12, '主项') && chk(a13, '视唱') &&chk(a14, '副项')){			
+                    var a15 = (a11*0.15+a12*0.55+a13*0.05+a14*0.25) * 3; //得分 = （乐理与听写*0.35+主项*0.35+视唱*0.06+副项*0.24）*3
+                    a15 = Math.round(a15);
+                    $("#a15").val(a15);
+                }
+            });
+
+            //计算form1
+            $("#s1").click(function () {
+                var a1 = $("#a1").val();
+                var a2 = $("#a2").val();
+                var a3 = $("#a3").val();
+                var a4 = $("#a4").val();
+        
+                if(chk(a1, '乐理与听写') && chk(a2, '声乐/器乐') && chk(a3, '视唱')){			
+                    var a5 = (a1*0.15+a2*0.80+a3*0.05) * 3; //得分 = （乐理与听写*0.15+声乐/器乐*0.80+视唱*0.05）*3
+                    a5 = Math.round(a5);
+                    $("#a5").val(a5);
+                }
+            });
+        
+            //计算form2
+            $("#s2").click(function () {
+                var b1 = $("#b1").val();
+                var b2 = $("#b2").val();
+        
+                if(chk(b1, '文化分', 0, 750) && chk(b2, '统考分', 0, 300)){			
+                    var b3 = b1*0.5 + b2*2.5*0.5; //得分 = 文化分课成绩×0.4+统考分统考成绩×2.5×0.6
+                    b3 = Math.round(b3);
+                    $("#b3").val(b3);
+                }
+            });
+        
+            //通用函数，验证不能为空，且取值在区间内
+            function chk(thevalue, thename, min=0, max=100){
+                if(thevalue == '' ){
+                    alert("[ " +thename+" ] 不能为空，请重新输入！" );
+                    return false;
+                }
+                if(thevalue < min ){
+                    alert("[ " +thename+" ] 不能小于" +min+"，请重新输入！" );
+                    return false;
+                }
+                if(thevalue > max ){
+                    alert("[ " +thename+" ] 不能大于" +max+"，请重新输入！" );
+                    return false;
+                }
+                return true;
+            }
+        
+            //判断为数值，最多1位小数
+            function checkNum(e){
+                var reg = /^[0-9]+([.]{1}[0-9]{1})?$/;
+                if(!reg.test($(e).val())){
+                    $(e).val('');
+                }
+            }
+        </script></body>
+</html>
